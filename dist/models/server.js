@@ -14,12 +14,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
-const routes_1 = require("../routes");
 const database_1 = require("../database");
+const routes_1 = require("../routes");
 class Server {
     constructor() {
         this.apiPaths = {
-            users: '/api/usuarios'
+            locations: '/api/locations',
+            users: '/api/usuarios',
+            tables: '/api/tables'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
@@ -44,7 +46,9 @@ class Server {
         this.app.use(express_1.default.static('public'));
     }
     routes() {
+        this.app.use(this.apiPaths.locations, routes_1.locationRoutes);
         this.app.use(this.apiPaths.users, routes_1.userRoutes);
+        this.app.use(this.apiPaths.tables, routes_1.tableRoute);
     }
     listen() {
         this.app.listen(this.port, () => {

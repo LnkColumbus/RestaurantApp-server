@@ -3,3 +3,6 @@
 
 # Ignorara variables de entorno
 .env
+
+# Ignore database
+/mongo

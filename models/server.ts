@@ -1,14 +1,17 @@
 import express, { Application } from 'express';
 import cors from 'cors';
-import { userRoutes } from '../routes';
+
 import { dbConnection } from '../database';
+import { locationRoutes, tableRoute, userRoutes } from '../routes';
 
 class Server {
 
     private app: Application;
     private port: string;
     private apiPaths = {
-        users: '/api/usuarios'
+        locations: '/api/locations',
+        users: '/api/usuarios',
+        tables: '/api/tables'
     }
 
     constructor() {
@@ -41,7 +44,9 @@ class Server {
     }
 
     routes() {
+        this.app.use( this.apiPaths.locations, locationRoutes );
         this.app.use( this.apiPaths.users, userRoutes);
+        this.app.use( this.apiPaths.tables, tableRoute );
     }
 
     listen() {
