@@ -1,14 +1,20 @@
-# App Laboratorio
+# App Restaurant
+The Rest Server for the application of restaurant. The technologies used were NodeJS, Typescript, Express, MongoDB, Mongoose, Docker.
 
-MongoDB URL Local:
+Set up the local database
 ```
-    mongodb://localhost:27017/
+    docker-compose up -d
 ```
 
-## Configurar las variables de entorno
-Renombrar el archivo __.env.template__ a __.env__
+Local MongoDB URL:
+```
+    mongodb://localhost:27017/restodb
+```
 
-* Reconstruir los módulos de Node y levantar el servidor
+## Set environment variables
+Rename file __.env.template__ to __.env__
+
+* Rebuild node modules and start project
 ```
 npm install
 npm run dev
